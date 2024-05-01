@@ -79,7 +79,7 @@ const router = createBrowserRouter([
         {
           path: 'update-menu/:id',
           element: <UpdateMenu/>,
-          loader: ({params}) => fetch(`http://localhost:6005/menu/${params.id}`)
+          loader: ({params}) => fetch(`https://fttoodie-server.onrender.com/menu/${params.id}`)
         }
       ]
     },

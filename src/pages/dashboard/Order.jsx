@@ -11,7 +11,7 @@ const Order = () => {
     const {refetch, data:orders = []}= useQuery({
       queryKey: ['orders', user?.email],
       queryFn: async () => {
-        const response = await fetch(`http://localhost:6005/payments?email=${user?.email}`,{
+        const response = await fetch(`https://fttoodie-server.onrender.com/payments?email=${user?.email}`,{
           headers: {
             authorization: `Bearer ${token}`
         }

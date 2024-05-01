@@ -26,7 +26,7 @@ const Cards = ({ item }) => {
             email: user.email
         };
 
-        fetch('http://localhost:6005/carts', {
+        fetch('https://fttoodie-server.onrender.com/carts', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
