@@ -16,7 +16,13 @@ const paymentRoutes = require('./api/routes/paymentRoutes');
 const port = process.env.PORT || 6005;
 
 //middleware
-app.use(cors());
+const corsOptions ={
+  origin:'https://fttoodie-server.onrender.com', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 //mongodb configurations
@@ -45,16 +51,13 @@ app.use('/payment', paymentRoutes);
 //stripe payment routes
 app.post("/create-payment-intent", async (req, res) => {
   const { price } = req.body;
-  const amount = price*100;
+  const amount = parseInt(price*100);
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amount,
     currency: "usd",
-    payment_method_types: [
-      "card",
-      "link"
-    ],
+    payment_method_types: ["card"],
     
   });
 
